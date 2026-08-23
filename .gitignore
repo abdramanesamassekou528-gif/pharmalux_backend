@@ -1,0 +1,17 @@
+# Environnement
+.env
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Django
+staticfiles/
+media/
+*.sqlite3
+db.sqlite3
+
+# Éditeurs / OS
+.vscode/
+.idea/
+.DS_Store
