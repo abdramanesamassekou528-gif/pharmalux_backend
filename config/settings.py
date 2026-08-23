@@ -71,16 +71,27 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bebe_cie',
-        'USER': 'postgres',
-        'PASSWORD': 'Darasama2020',
-        'HOST': 'localhost',
-        'PORT': '5432',
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.environ.get('DATABASE_URL'),
+            conn_max_age=600,
+            ssl_require=True
+        )
     }
-}
+else:
+
+    DATABASES = { 
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'bebe_cie',
+            'USER': 'postgres',
+            'PASSWORD': 'Darasama2020',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
+
 
 AUTH_USER_MODEL = 'comptes.Utilisateur'
 
